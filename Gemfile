@@ -32,7 +32,7 @@ gem 'slim'
 gem 'figaro'
 
 # user authentication
-gem 'devise'
+gem 'devise', '~> 3.4.0'
 
 # foundation css framework
 gem 'foundation-rails'
