@@ -1,0 +1,24 @@
+# For convenience, set and use env config values from here and do not push them
+# to heroku via `figaro heroku:set -e production`.
+#
+# RACK_ENV, RAILS_ENV and some others are set directly on Heroku. The rest are here.
+
+support_email: "info@churchofsouthland.com"
+# make it easier to spot our log messages
+logging_sigil: "{MMMMMMMMMMMMMMMMMMMM}"
+# devise friendly_token length, must be <= 20
+autogen_password_length: "12"
+
+# set default here but we don't want to be using rollbar in anything other than prod/stage
+#rollbar_access_token: 'b227c645e7104636ab2edac6228e60f2'
+
+# environment specific values start here
+development:
+  MAILTRAP_USERNAME: "foo"
+  MAILTRAP_PASSWORD: "foo"
+
+test:
+  foo: 'p'
+
+production:
+  #rollbar_access_token: '4235829316d6447998114f369fb15db2'
