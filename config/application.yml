@@ -10,7 +10,7 @@ logging_sigil: "{MMMMMMMMMMMMMMMMMMMM}"
 autogen_password_length: "12"
 
 # set default here but we don't want to be using rollbar in anything other than prod/stage
-#rollbar_access_token: 'b227c645e7104636ab2edac6228e60f2'
+rollbar_access_token: 'foo'
 
 # environment specific values start here
 development:
@@ -21,4 +21,4 @@ test:
   foo: 'p'
 
 production:
-  #rollbar_access_token: '4235829316d6447998114f369fb15db2'
+  rollbar_access_token: 'foo'
