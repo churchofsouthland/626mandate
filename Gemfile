@@ -3,8 +3,9 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
+gem 'pg'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -22,9 +23,6 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
-
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
 
 gem 'puma'
 
@@ -53,3 +51,28 @@ gem 'quiet_assets', group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :test do
+  gem 'email_spec'
+end
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+
+  gem 'pry-rails'
+  gem 'pry-byebug'
+end
+
+group :production, :staging do
+  # needed for heroku
+  gem 'rails_12factor'
+  gem 'rack-timeout' # abort slow rack requests
+end
+
+ruby "2.2.2"
