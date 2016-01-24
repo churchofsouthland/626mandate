@@ -11,12 +11,36 @@ html lang="en"
     = csrf_meta_tags
 
   body
+    .topbar
+      .row
+        .large-12.columns
+          nav.top-bar(data-topbar role="navigation")
+            ul.title-area
+              li.name
+                h1
+                  a(href="/" style="padding-left: 0") 626 Mandate
+              li.toggle-topbar
+                a(href="#")
+                  span Menu
+            / don't show menu when users are logging in
+            section.top-bar-section
+              <!-- Right Nav Section -->
+              ul.right
+                - if user_signed_in?
+                  li
+                    = link_to 'Prayer Slots', '/'
+                  li
+                    = link_to 'Calendar', '/'
+                  li
+                    = link_to 'Settings', '/'
+
+                  li.has-form(style="padding-right: 0")
+                    = link_to('Logout', destroy_user_session_path, class: 'button secondary')
+                - else
+                  li
+                    = link_to("Sign In", new_user_session_path, class: 'button secondary')
+
     .row
       .large-12.columns
-        - if user_signed_in?
-          = link_to "sign out", destroy_user_session_path
-        - else
-          = link_to "Log In", new_user_session_path
-
         = yield
     = javascript_include_tag "application"
