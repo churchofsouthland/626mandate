@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#welcome'
 
-  resource :prayer_slot, only: [:create]
+  get 'add_prayer_slot/:time_i', to: 'prayer_slots#add', as: :add_prayer_slot
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

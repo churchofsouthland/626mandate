@@ -1,15 +1,14 @@
-.row
-  .large-12.columns
-    h4 Your Prayer Slots
-    ul
-      li Feb 8, 2pm
-      li Feb 9, 1pm
-      li Feb 10, 7am
 ruby:
   # some constants...move these somewhere more appropriate
   time_format = '%l:%M'
   start_date_time = DateTime.parse('2016/02/07').beginning_of_day
 
+.row
+  .large-12.columns
+    h4 Your Prayer Slots
+    ul
+      - @owned_prayer_slots.sort.each do |k,v|
+        li= Time.at(k).strftime("%B %e, #{time_format}")
 .row
   .large-12.columns
     h2= "#{start_date_time.strftime('%B %e')}-#{(start_date_time + 6.days).day}"
@@ -28,9 +27,14 @@ ruby:
           tr
             td= time.strftime(time_format)
             - 7.times do |i|
-              td
-                - adjusted_time = time + i.day
-                = link_to(adjusted_time.strftime("%e #{time_format}"), "/#{adjusted_time}")
+              ruby:
+                adjusted_time_i = (time + i.day).to_i
+                count = @prayer_slot_counts[adjusted_time_i] || 0
+                empty = count == 0 ? 'empty' : ''
+                owned = @owned_prayer_slots[adjusted_time_i] == true ? 'owned' : ''
+                class_name = [empty, owned].join(' ')
+              td{class=class_name}
+                = link_to(count, add_prayer_slot_path(adjusted_time_i))
   .large-6.columns
     h3 PM
     - start_date_time = start_date_time + 12.hours
@@ -46,6 +50,11 @@ ruby:
           tr
             td= time.strftime(time_format)
             - 7.times do |i|
-              td
-                - adjusted_time = time + i.day
-                = link_to(adjusted_time.strftime("%e #{time_format}"), "/#{adjusted_time}")
+              ruby:
+                adjusted_time_i = (time + i.day).to_i
+                count = @prayer_slot_counts[adjusted_time_i] || 0
+                empty = count == 0 ? 'empty' : ''
+                owned = @owned_prayer_slots[adjusted_time_i] == true ? 'owned' : ''
+                class_name = [empty, owned].join(' ')
+              td{class=class_name}
+                = link_to(count, add_prayer_slot_path(adjusted_time_i))
