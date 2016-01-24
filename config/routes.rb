@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'pages#welcome'
 
   get 'add_prayer_slot/:time_i', to: 'prayer_slots#add', as: :add_prayer_slot
+  resources :prayer_slots, only: [:index]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

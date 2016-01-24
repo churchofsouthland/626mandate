@@ -1,4 +1,8 @@
 class PrayerSlotsController < ApplicationController
+  def index
+    @owned_prayer_slots = PrayerSlot.where(user: current_user).sort
+  end
+
   def add
     if !user_signed_in?
       redirect_to new_user_session_path

@@ -1,0 +1,10 @@
+ruby:
+  # some constants...move these somewhere more appropriate
+  time_format = '%l:%M'
+
+.row
+  .large-12.columns
+    h4 My Prayer Slots
+    ul
+      - @owned_prayer_slots.each do |slot|
+        li= slot.due.strftime("%B %e, #{time_format}")

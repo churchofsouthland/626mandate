@@ -3,12 +3,6 @@ ruby:
   time_format = '%l:%M'
   start_date_time = DateTime.parse('2016/02/07').beginning_of_day
 
-/.row
-  .large-12.columns
-    h4 Your Prayer Slots
-    ul
-      - @owned_prayer_slots.sort.each do |k,v|
-        li= Time.at(k).strftime("%B %e, #{time_format}")
 .row
   .large-12.columns
     h2= "#{start_date_time.strftime('%B %e')}-#{(start_date_time + 6.days).day}"
