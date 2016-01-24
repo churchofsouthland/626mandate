@@ -1,0 +1,27 @@
+ruby:
+  # some constants...move these somewhere more appropriate
+  time_format = '%l:%M'
+  start_date_time = start_date_time + 12.hours if am_pm == 'PM'
+
+h3= am_pm
+
+table
+  thead
+    th << &nbsp; &nbsp; >>
+    - 7.times do |i|
+      - date = start_date_time + i
+      th= "#{date.strftime('%a')} #{date.day}"
+  tbody
+    - 24.times do |i|
+      - time = start_date_time + (i * 30).minutes
+      tr
+        td= time.strftime(time_format)
+        - 7.times do |i|
+          ruby:
+            adjusted_time_i = (time + i.day).to_i
+            count = prayer_slot_counts[adjusted_time_i] || 0
+            empty = count == 0 ? 'empty' : ''
+            owned = owned_prayer_slots[adjusted_time_i] == true ? 'owned' : ''
+            class_name = [empty, owned].join(' ')
+          td{class=class_name}
+            = link_to(count, add_prayer_slot_path(adjusted_time_i))

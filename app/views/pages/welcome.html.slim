@@ -3,7 +3,7 @@ ruby:
   time_format = '%l:%M'
   start_date_time = DateTime.parse('2016/02/07').beginning_of_day
 
-.row
+/.row
   .large-12.columns
     h4 Your Prayer Slots
     ul
@@ -14,47 +14,14 @@ ruby:
     h2= "#{start_date_time.strftime('%B %e')}-#{(start_date_time + 6.days).day}"
 .row
   .large-6.columns
-    h3 AM
-    table
-      thead
-        th << &nbsp; &nbsp; >>
-        - 7.times do |i|
-          - date = start_date_time + i
-          th= "#{date.strftime('%a')} #{date.day}"
-      tbody
-        - 24.times do |i|
-          - time = start_date_time + (i * 30).minutes
-          tr
-            td= time.strftime(time_format)
-            - 7.times do |i|
-              ruby:
-                adjusted_time_i = (time + i.day).to_i
-                count = @prayer_slot_counts[adjusted_time_i] || 0
-                empty = count == 0 ? 'empty' : ''
-                owned = @owned_prayer_slots[adjusted_time_i] == true ? 'owned' : ''
-                class_name = [empty, owned].join(' ')
-              td{class=class_name}
-                = link_to(count, add_prayer_slot_path(adjusted_time_i))
+    = render 'time_slots',
+      am_pm: 'AM',
+      start_date_time: start_date_time,
+      prayer_slot_counts: @prayer_slot_counts,
+      owned_prayer_slots: @owned_prayer_slots
   .large-6.columns
-    h3 PM
-    - start_date_time = start_date_time + 12.hours
-    table
-      thead
-        th << &nbsp; &nbsp; >>
-        - 7.times do |i|
-          - date = start_date_time + i
-          th= "#{date.strftime('%a')} #{date.day}"
-      tbody
-        - 24.times do |i|
-          - time = start_date_time + (i * 30).minutes
-          tr
-            td= time.strftime(time_format)
-            - 7.times do |i|
-              ruby:
-                adjusted_time_i = (time + i.day).to_i
-                count = @prayer_slot_counts[adjusted_time_i] || 0
-                empty = count == 0 ? 'empty' : ''
-                owned = @owned_prayer_slots[adjusted_time_i] == true ? 'owned' : ''
-                class_name = [empty, owned].join(' ')
-              td{class=class_name}
-                = link_to(count, add_prayer_slot_path(adjusted_time_i))
+    = render 'time_slots',
+      am_pm: 'PM',
+      start_date_time: start_date_time,
+      prayer_slot_counts: @prayer_slot_counts,
+      owned_prayer_slots: @owned_prayer_slots
