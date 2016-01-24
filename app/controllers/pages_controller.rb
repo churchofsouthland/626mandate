@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
+  #Start - Monday, March 7 @ 12:00a
+  #End - Sat, March 12 @ 11:59p
+
   def welcome
+    @start_date_time = DateTime.parse('2016/02/07').beginning_of_day
     @prayer_slot_counts = PrayerSlot.group(:due)
                                     .count
                                     .inject({}) do |item, (k,v)|

@@ -2,10 +2,25 @@
   background-color: #333;
 }
 
-.empty {
-  background-color: lightpink;
+.black {
+  color: #333;
 }
 
-.owned {
-  background-color: lightblue;
+.time-slots {
+  a {
+    color: #999;
+  }
+
+  .empty {
+    background-color: lightpink;
+  }
+
+  .owned {
+    background-color: lightblue;
+  }
+
+  .active {
+    color: #bbb;
+    background-color: #eee;
+  }
 }
