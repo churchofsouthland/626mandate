@@ -3,11 +3,9 @@ ruby:
   time_format = '%l:%M'
   start_date_time = start_date_time + 12.hours if am_pm == 'PM'
 
-h3= am_pm
-
 table
   thead
-    th << &nbsp; &nbsp; >>
+    th: h4: strong= am_pm
     - 7.times do |i|
       - date = start_date_time + i
       th= "#{date.strftime('%a')} #{date.day}"
