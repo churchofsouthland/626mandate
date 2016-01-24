@@ -12,7 +12,5 @@ class PagesController < ApplicationController
                                       item[record.due.to_i] = true;
                                       item
                                     end
-
-                                    puts "AAAAAAAAAAAAAAA #{@owned_prayer_slots}"
   end
 end
