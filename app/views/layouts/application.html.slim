@@ -13,5 +13,10 @@ html lang="en"
   body
     .row
       .large-12.columns
+        - if user_signed_in?
+          = link_to "sign out", destroy_user_session_path
+        - else
+          = link_to "Log In", new_user_session_path
+
         = yield
     = javascript_include_tag "application"

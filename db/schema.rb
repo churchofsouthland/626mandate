@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118074159) do
+ActiveRecord::Schema.define(version: 20160123235707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "prayer_slots", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "due"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prayer_slots", ["due"], name: "index_prayer_slots_on_due", using: :btree
+  add_index "prayer_slots", ["user_id", "due"], name: "index_prayer_slots_on_user_id_and_due", unique: true, using: :btree
+  add_index "prayer_slots", ["user_id"], name: "index_prayer_slots_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

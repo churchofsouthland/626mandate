@@ -1,60 +1,51 @@
-.large-12.columns
-  h4 Your Prayer Slots
-  ul
-    li Feb 8, 2pm
-    li Feb 9, 1pm
-    li Feb 10, 7am
-- time_format = '%l:%M'
-- day = 5
-.large-12.columns
-  h2 February 5-11
-.large-6.columns
-  h3 AM
-  table
-    thead
-      th << &nbsp; &nbsp; >>
-      th= "Sun #{day}"
-      th= "Mon #{day+1}"
-      th= "Tue #{day+2}"
-      th= "Wed #{day+3}"
-      th= "Thu #{day+4}"
-      th= "Fri #{day+5}"
-      th= "Sat #{day+6}"
-    tbody
-      - time = Time.parse('12')
-      - 24.times do |i|
-        tr
-          td= time.strftime(time_format)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-        - time = time + 30.minutes
-.large-6.columns
-  h3 PM
-  table
-    thead
-      th << &nbsp; &nbsp; >>
-      th= "Sun #{day}"
-      th= "Mon #{day+1}"
-      th= "Tue #{day+2}"
-      th= "Wed #{day+3}"
-      th= "Thu #{day+4}"
-      th= "Fri #{day+5}"
-      th= "Sat #{day+6}"
-    tbody
-      - time = Time.parse('12 pm')
-      - 24.times do |i|
-        tr
-          td= time.strftime(time_format)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-          td{class=(rand(0..5) == 0 ? 'empty' : '')}= rand(0..3)
-        - time = time + 30.minutes
+.row
+  .large-12.columns
+    h4 Your Prayer Slots
+    ul
+      li Feb 8, 2pm
+      li Feb 9, 1pm
+      li Feb 10, 7am
+ruby:
+  # some constants...move these somewhere more appropriate
+  time_format = '%l:%M'
+  start_date_time = DateTime.parse('2016/02/07').beginning_of_day
+
+.row
+  .large-12.columns
+    h2= "#{start_date_time.strftime('%B %e')}-#{(start_date_time + 6.days).day}"
+.row
+  .large-6.columns
+    h3 AM
+    table
+      thead
+        th << &nbsp; &nbsp; >>
+        - 7.times do |i|
+          - date = start_date_time + i
+          th= "#{date.strftime('%a')} #{date.day}"
+      tbody
+        - 24.times do |i|
+          - time = start_date_time + (i * 30).minutes
+          tr
+            td= time.strftime(time_format)
+            - 7.times do |i|
+              td
+                - adjusted_time = time + i.day
+                = link_to(adjusted_time.strftime("%e #{time_format}"), "/#{adjusted_time}")
+  .large-6.columns
+    h3 PM
+    - start_date_time = start_date_time + 12.hours
+    table
+      thead
+        th << &nbsp; &nbsp; >>
+        - 7.times do |i|
+          - date = start_date_time + i
+          th= "#{date.strftime('%a')} #{date.day}"
+      tbody
+        - 24.times do |i|
+          - time = start_date_time + (i * 30).minutes
+          tr
+            td= time.strftime(time_format)
+            - 7.times do |i|
+              td
+                - adjusted_time = time + i.day
+                = link_to(adjusted_time.strftime("%e #{time_format}"), "/#{adjusted_time}")
