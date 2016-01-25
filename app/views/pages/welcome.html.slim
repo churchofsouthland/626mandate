@@ -2,15 +2,6 @@ ruby:
   # some constants...move these somewhere more appropriate
   time_format = '%l:%M'
 
-  # TODO: fix this
-  # temporarily grey out "inactive" time slots
-  @active_prayer_slots = {}
-  foo = DateTime.parse('2016/02/07').beginning_of_day
-  80.times do |i|
-    @active_prayer_slots[foo.to_i] = true
-    foo = (Time.at(foo) + 30.minutes).to_i
-  end
-
 .row
   .large-12.columns
     h2
@@ -26,11 +17,11 @@ ruby:
       start_date_time: @start_date_time,
       prayer_slot_counts: @prayer_slot_counts,
       owned_prayer_slots: @owned_prayer_slots,
-      active_prayer_slots: @active_prayer_slots
+      inactive_prayer_slots: @inactive_prayer_slots
   .large-6.columns
     = render 'time_slots',
       am_pm: 'PM',
       start_date_time: @start_date_time,
       prayer_slot_counts: @prayer_slot_counts,
       owned_prayer_slots: @owned_prayer_slots,
-      active_prayer_slots: @active_prayer_slots
+      inactive_prayer_slots: @inactive_prayer_slots
