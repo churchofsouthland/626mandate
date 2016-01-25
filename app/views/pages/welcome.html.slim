@@ -5,11 +5,7 @@ ruby:
 .row
   .large-12.columns
     h2
-      <a class="black" href="#"><i class="fa fa-arrow-circle-left"></i></a>
-      '&nbsp;
       = "#{@start_date_time.strftime('%B %e')}-#{(@start_date_time + 6.days).day}"
-      '&nbsp;
-      <a class="black" href="#"><i class="fa fa-arrow-circle-right"></i></a>
 .row
   .large-6.columns
     = render 'time_slots',
