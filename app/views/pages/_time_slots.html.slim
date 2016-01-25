@@ -22,7 +22,7 @@ table.time-slots
             owned = owned_prayer_slots[adjusted_time_i] == true ? 'owned' : ''
             inactive = inactive_prayer_slots[adjusted_time_i] == true ? 'inactive' : ''
             class_name = [empty, owned, inactive].join(' ')
-          td{class=class_name}
+          td{class=class_name data-slot=adjusted_time_i}
             - next if count == 0
 
             - if inactive_prayer_slots[adjusted_time_i] == true
