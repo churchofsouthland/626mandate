@@ -45,3 +45,11 @@ html lang="en"
       .large-12.columns
         = yield
     = javascript_include_tag "application"
+
+    /javascript:
+      $(document).ready(function() {
+        $("table tr td").click(function(event) {
+          var slot = $(this).data('slot');
+          console.log(slot);
+        });
+      });
