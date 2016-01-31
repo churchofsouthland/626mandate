@@ -1,0 +1,55 @@
+$(function(){
+  $('input:checkbox').change(function() {
+    var cbx = $(this);
+    var taskId = cbx.data('task-id');
+    var isChecked = cbx.is(':checked');
+    var closestTr = cbx.closest('tr');
+  });
+
+  $("table.time-slots").delegate('td','click', function(e) {
+    var td = $(this);
+    var slot = td.data('slot');
+
+    // do not trigger events on inactive cells
+    if (td.hasClass('inactive') === false) {
+      console.log(slot);
+      console.log(td.text());
+
+
+      // toggle the task and see what response was
+      var url = "add_prayer_slot/" + slot;
+      var addSlotRequest = $.get(url);
+
+      addSlotRequest.success(function(result) {
+        toastr[result.toastrType](result.message);
+
+        if (result.toastrType !== 'warning') {
+          toastr[result.toastrType](result.message);
+
+          var count = parseInt(td.text());
+          if (td.hasClass('owned')) {
+            newCount = count - 1;
+            markEmptyStyle(td, newCount);
+            td.text(newCount);
+          } else {
+            newCount = count + 1;
+            markEmptyStyle(td, newCount);
+            td.text(newCount);
+          }
+
+          td.toggleClass('owned');
+        }
+      });
+
+      addSlotRequest.error(function(jqXHR, textStatus, errorThrown) {
+        toastr['error']('Sorry, there was an error. Please try again later.');
+      });
+    }
+  });
+
+  var markEmptyStyle = function(td, count) {
+    if (count === 0) {
+      td.addClass('empty');
+    }
+  };
+});

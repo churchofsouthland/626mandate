@@ -5,17 +5,23 @@ class PrayerSlotsController < ApplicationController
 
   def add
     if !user_signed_in?
-      redirect_to new_user_session_path
+      render json: { message: 'Please sign in', toastrType: 'warning' }
     else
-      due = Time.at(params[:time_i].to_i)
+      due = Time.at(params[:time_i].to_i).utc
+      formatted_due = Time.at(due).strftime("%b %d @%l:%M %P")
 
       existing_slot = PrayerSlot.find_by(user: current_user, due: due)
       if existing_slot.present?
         existing_slot.delete
+        message = "Removed<br />#{formatted_due}"
+        toastr_type = 'info'
       else
         PrayerSlot.create!(user: current_user, due: due)
+        message = "Added<br />#{formatted_due}"
+        toastr_type = 'success'
       end
-      redirect_to root_path
+
+      render json: { message: message, toastrType: toastr_type }
     end
   end
 end
