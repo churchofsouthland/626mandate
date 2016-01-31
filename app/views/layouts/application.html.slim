@@ -9,9 +9,16 @@ html lang="en"
     = stylesheet_link_tag    "application"
     = stylesheet_link_tag href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
     = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application"
+    = javascript_include_tag href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"
+    = stylesheet_link_tag    href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
     = csrf_meta_tags
 
   body
+    = yield :javascript
+    / toastr js notifications
+    = render 'shared/toastr', flash: flash
+
     .topbar
       .row
         .large-12.columns
@@ -44,7 +51,6 @@ html lang="en"
     .row
       .large-12.columns
         = yield
-    = javascript_include_tag "application"
 
     /javascript:
       $(document).ready(function() {

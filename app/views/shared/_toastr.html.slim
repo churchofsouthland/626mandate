@@ -1,0 +1,18 @@
+javascript:
+  toastr.options.timeOut = 0;
+  toastr.options.extendedTimeOut = 1000;
+  toastr.options.progressBar = true;
+- if flash.any?
+  - flash.each do |k,v|
+    javascript:
+      var noticeType;
+      if(#{raw(ApplicationController::TOASTR_TYPES.map(&:to_s))}.indexOf("#{k}") == -1) {
+        // default to 'success'
+        noticeType = 'success';
+      } else if('#{k}' == 'info') {
+        // use 'success' color instead of 'info' to differentiate from button color
+        noticeType = 'success';
+      } else {
+        noticeType = "#{k}";
+      }
+      toastr[noticeType]("#{v}");
