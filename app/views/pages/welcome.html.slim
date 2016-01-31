@@ -6,9 +6,11 @@ ruby:
   time_format = '%l:%M'
 
 .row
-  .large-12.columns
-    h2
-      = "#{@start_date_time.strftime('%B %e')}-#{(@start_date_time + 6.days).day}"
+  .large-6.columns
+    h2= "#{@start_date_time.strftime('%B %e')}-#{(@start_date_time + 6.days).day}"
+  .large-6.columns
+    .alert-box.info(style="margin-top: 0.5rem; margin-bottom: 0;")
+      'Click on a day/time below to add a prayer time slot.
 .row
   .large-6.columns
     = render 'time_slots',
