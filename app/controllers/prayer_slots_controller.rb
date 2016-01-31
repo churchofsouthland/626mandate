@@ -5,7 +5,7 @@ class PrayerSlotsController < ApplicationController
 
   def add
     if !user_signed_in?
-      render json: { message: 'Please sign in', toastrType: 'warning' }
+      render json: { message: 'Please sign in to pick time slots.', toastrType: 'warning' }
     else
       due = Time.at(params[:time_i].to_i).utc
       formatted_due = Time.at(due).strftime("%b %d @%l:%M %P")

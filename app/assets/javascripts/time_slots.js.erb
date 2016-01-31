@@ -21,15 +21,22 @@ $(function(){
       var addSlotRequest = $.get(url);
 
       addSlotRequest.success(function(result) {
-        toastr[result.toastrType](result.message);
-
-        if (result.toastrType !== 'warning') {
+        if (result.toastrType === 'warning') {
+          toastr.clear();
+          toastr[result.toastrType](result.message);
+        } else {
           toastr[result.toastrType](result.message);
 
           var count = parseInt(td.text());
+          if (isNaN(count)) {
+            count = 0;
+          }
           if (td.hasClass('owned')) {
             newCount = count - 1;
             markEmptyStyle(td, newCount);
+            if (newCount === 0) {
+              newCount = '';
+            }
             td.text(newCount);
           } else {
             newCount = count + 1;
