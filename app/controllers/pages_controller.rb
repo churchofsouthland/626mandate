@@ -3,7 +3,20 @@ class PagesController < ApplicationController
     start_626 = DateUtils.mandate_start_date # Mon
     end_626 = DateUtils.mandate_finish_date  # Sat
 
-    @calendar_start_date = DateUtils.calendar_start_date
+    if params.has_key?(:c)
+      # TODO: add guard here to make sure c looks valid
+      # if it's not could take up cpu cycles
+      c_int = params[:c].to_i
+
+      if c_int.between?(DateTime.parse('2016/01/01').to_i, DateTime.parse('2016/12/30').to_i)
+        c_start_date = Time.at(c_int)
+      end
+    end
+
+    @calendar_start_date = c_start_date || DateUtils.calendar_start_date
+    @calendar_next_date = @calendar_start_date + 1.week
+    @calendar_prev_date = @calendar_start_date - 1.week
+
     @prayer_slot_counts = PrayerSlot.group(:due)
                                     .count
                                     .inject({}) do |item, (k,v)|

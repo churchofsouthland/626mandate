@@ -7,7 +7,24 @@ ruby:
 
 .row
   .large-6.columns
-    h2= "#{@calendar_start_date.strftime('%B %e')}-#{(@calendar_start_date + 6.days).day}"
+    h2
+      / HACK: hard code this for now
+      - if params[:c] == '1457856000'
+        a(href="#{root_path}")
+          i.fa.fa-arrow-circle-left
+        |&nbsp;
+
+      = @calendar_start_date.strftime('%B %e')
+      |&nbsp;
+      |-
+      |&nbsp;
+      = (@calendar_start_date + 6.days).day
+
+      / HACK: hard code this for now
+      - if @calendar_next_date.to_i == 1457856000
+        |&nbsp;
+        a(href="#{root_path(c: @calendar_next_date.to_i)}")
+          i.fa.fa-arrow-circle-right
   .large-6.columns
     .alert-box.info(style="margin-top: 0.5rem; margin-bottom: 0;")
       'Click on a day/time below to add a prayer time slot.
