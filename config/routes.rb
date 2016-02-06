@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'add_prayer_slot/:time_i', to: 'prayer_slots#add', as: :add_prayer_slot
   resources :prayer_slots, only: [:index]
 
+  get 'time_zone', to: 'pages#time_zone', as: :time_zone
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

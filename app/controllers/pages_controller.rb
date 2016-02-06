@@ -60,4 +60,7 @@ class PagesController < ApplicationController
                    end
     @inactive_prayer_slots.merge!(inactive_end)
   end
+
+  def time_zone
+  end
 end
