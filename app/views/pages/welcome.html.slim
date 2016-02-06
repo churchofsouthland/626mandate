@@ -7,7 +7,7 @@ ruby:
 
 .row
   .large-6.columns
-    h2= "#{@start_date_time.strftime('%B %e')}-#{(@start_date_time + 6.days).day}"
+    h2= "#{@calendar_start_date.strftime('%B %e')}-#{(@calendar_start_date + 6.days).day}"
   .large-6.columns
     .alert-box.info(style="margin-top: 0.5rem; margin-bottom: 0;")
       'Click on a day/time below to add a prayer time slot.
@@ -15,14 +15,14 @@ ruby:
   .large-6.columns
     = render 'time_slots',
       am_pm: 'AM',
-      start_date_time: @start_date_time,
+      calendar_start_date: @calendar_start_date,
       prayer_slot_counts: @prayer_slot_counts,
       owned_prayer_slots: @owned_prayer_slots,
       inactive_prayer_slots: @inactive_prayer_slots
   .large-6.columns
     = render 'time_slots',
       am_pm: 'PM',
-      start_date_time: @start_date_time,
+      calendar_start_date: @calendar_start_date,
       prayer_slot_counts: @prayer_slot_counts,
       owned_prayer_slots: @owned_prayer_slots,
       inactive_prayer_slots: @inactive_prayer_slots

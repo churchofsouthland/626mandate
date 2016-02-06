@@ -1,9 +1,9 @@
 class PagesController < ApplicationController
   def welcome
-    start_626 = DateTime.parse('2016/03/07').beginning_of_day # Mon
-    end_626 = DateTime.parse('2016/03/12').end_of_day # Sat
+    start_626 = DateUtils.mandate_start_date # Mon
+    end_626 = DateUtils.mandate_finish_date  # Sat
 
-    @start_date_time = DateTime.parse('2016/03/06').beginning_of_day
+    @calendar_start_date = DateUtils.calendar_start_date
     @prayer_slot_counts = PrayerSlot.group(:due)
                                     .count
                                     .inject({}) do |item, (k,v)|
@@ -18,10 +18,10 @@ class PagesController < ApplicationController
                                     end
     # inactive when outside 626 prayer schedule or time has passed
     # inactive at beginning
-    @inactive_prayer_slots = if start_626.to_i > @start_date_time.to_i
+    @inactive_prayer_slots = if start_626.to_i > @calendar_start_date.to_i
                                # build a list
                                {}.tap do |inactive|
-                                 i = @start_date_time.to_i
+                                 i = @calendar_start_date.to_i
                                  loop do
                                    inactive[i] = true
                                    i += 30.minutes.to_i
@@ -32,7 +32,7 @@ class PagesController < ApplicationController
                                {}
                              end
     # inactive at end
-    end_date_time_i = @start_date_time.to_i + 603000
+    end_date_time_i = @calendar_start_date.to_i + 603000
     inactive_end = if end_date_time_i > end_626.to_i
                      {}.tap do |inactive|
                        i = end_626.to_i + 1

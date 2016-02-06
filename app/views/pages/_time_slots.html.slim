@@ -1,17 +1,17 @@
 ruby:
   # some constants...move these somewhere more appropriate
   time_format = '%l:%M'
-  start_date_time = start_date_time + 12.hours if am_pm == 'PM'
+  calendar_start_date = calendar_start_date + 12.hours if am_pm == 'PM'
 
 table.time-slots
   thead
     th: h4: strong= am_pm
     - 7.times do |i|
-      - date = start_date_time + i
+      - date = calendar_start_date + i
       th= "#{date.strftime('%a')} #{date.day}"
   tbody
     - 24.times do |i|
-      - time = start_date_time + (i * 30).minutes
+      - time = calendar_start_date + (i * 30).minutes
       tr
         td= time.strftime(time_format)
         - 7.times do |i|
