@@ -1,6 +1,6 @@
 class PrayerSlotsController < ApplicationController
   def index
-    @owned_prayer_slots = PrayerSlot.where(user: current_user).sort
+    @owned_prayer_slots = PrayerSlot.where(user: current_user).order('due ASC')
   end
 
   def add
