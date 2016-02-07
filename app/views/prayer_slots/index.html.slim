@@ -4,7 +4,7 @@ ruby:
 
 .row
   .large-12.columns
-    h2 My Prayer Slots - #{Time.zone.now.strftime('%Z')}
+    h2 My Prayer Slots - #{TimeZonePresenter.short_name(Time.zone.now)}
 
     ul
       - @owned_prayer_slots.each do |slot|

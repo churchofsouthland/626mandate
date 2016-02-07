@@ -29,10 +29,12 @@ module Six26mandate
 
     config.autoload_paths += %W(
     #{config.root}/app/domain
+    #{config.root}/app/presenter
     )
 
     config.eager_load_paths += %W(
     #{config.root}/app/domain
+    #{config.root}/app/presenter
     )
   end
 end
