@@ -64,4 +64,10 @@ class PagesController < ApplicationController
 
   def time_zone
   end
+
+  def change_time_zone
+    current_user.time_zone = params[:time_zone]
+    current_user.save!
+    redirect_to time_zone_path
+  end
 end

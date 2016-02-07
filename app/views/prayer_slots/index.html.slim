@@ -4,7 +4,8 @@ ruby:
 
 .row
   .large-12.columns
-    h2 My Prayer Slots (TIMEZONE HERE)
+    h2 My Prayer Slots - #{Time.zone.now.strftime('%Z')}
+
     ul
       - @owned_prayer_slots.each do |slot|
         li= slot.due.strftime("%B %e, #{time_format}")

@@ -1,3 +1,15 @@
 h2 My Time Zone
+h4= current_user.email
 
-= Time.zone
+ruby:
+  time_zones = [
+    ['Pacific Time (US & Canada)', 'Pacific Time (US & Canada)'],
+    ['Eastern Time (US & Canada)', 'Eastern Time (US & Canada)'],
+    ['Beijing', 'Beijing']
+  ]
+= form_tag(change_time_zone_path, method: 'post') do
+  h4= Time.zone.name
+
+  = select_tag('time_zone',
+    options_for_select(time_zones, selected: Time.zone.name),
+    onchange: 'this.form.submit()')

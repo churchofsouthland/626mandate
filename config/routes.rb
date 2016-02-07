@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :prayer_slots, only: [:index]
 
   get 'time_zone', to: 'pages#time_zone', as: :time_zone
+  post 'change_time_zone', to: 'pages#change_time_zone', as: :change_time_zone
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   # set user's time_zone per request. default to PT.
   def set_time_zone
     old_time_zone = Time.zone
-    if current_user && current_user.try(:time_zone).present?
+    if current_user && current_user.time_zone.present?
       Time.zone = current_user.time_zone
     else
       Time.zone = Figaro.env.default_time_zone

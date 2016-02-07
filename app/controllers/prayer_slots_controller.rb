@@ -8,7 +8,7 @@ class PrayerSlotsController < ApplicationController
       render json: { message: 'Please sign in to pick time slots.', toastrType: 'warning' }
     else
       due = Time.at(params[:time_i].to_i).utc
-      formatted_due = Time.at(due).strftime("%b %d @%l:%M %P")
+      formatted_due = Time.zone.at(due).strftime("%b %d @%l:%M %P %Z")
 
       existing_slot = PrayerSlot.find_by(user: current_user, due: due)
       if existing_slot.present?
