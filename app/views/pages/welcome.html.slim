@@ -10,8 +10,7 @@ ruby:
     .row
       .large-8.columns
         h2
-          / HACK: hard code this for now
-          - if params[:c] == '1457856000'
+          - if @prev_link
             a(href="#{root_path}")
               i.fa.fa-arrow-circle-left
             |&nbsp;
@@ -23,9 +22,9 @@ ruby:
           = (@calendar_start_date + 6.days).day
 
           / HACK: hard code this for now
-          - if @calendar_next_date.to_i == 1457856000
+          - if @next_link
             |&nbsp;
-            a(href="#{root_path(c: @calendar_next_date.to_i)}")
+            a(href="#{root_path(c: 1)}")
               i.fa.fa-arrow-circle-right
       .large-4.columns.text-right
         h4= link_to Time.zone.now.strftime('%Z'), time_zone_path
