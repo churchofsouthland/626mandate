@@ -68,6 +68,6 @@ class PagesController < ApplicationController
   def change_time_zone
     current_user.time_zone = params[:time_zone]
     current_user.save!
-    redirect_to time_zone_path
+    redirect_to time_zone_path, { success: "Time zone set to #{params[:time_zone]}" }
   end
 end
