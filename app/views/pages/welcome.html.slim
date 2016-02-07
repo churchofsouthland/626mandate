@@ -8,7 +8,7 @@ ruby:
 .row
   .large-6.columns
     .row
-      .large-9.columns
+      .large-8.columns
         h2
           / HACK: hard code this for now
           - if params[:c] == '1457856000'
@@ -27,8 +27,8 @@ ruby:
             |&nbsp;
             a(href="#{root_path(c: @calendar_next_date.to_i)}")
               i.fa.fa-arrow-circle-right
-      .large-3.columns.text-right
-        h4= link_to Time.zone.name, time_zone_path
+      .large-4.columns.text-right
+        h4= link_to Time.zone.now.strftime('%Z'), time_zone_path
   .large-6.columns
     .alert-box.info(style="margin-top: 0.5rem; margin-bottom: 0;")
       'Click on a day/time below to add a prayer time slot.

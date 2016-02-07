@@ -7,7 +7,7 @@ table.time-slots
   thead
     th: h4: strong= am_pm
     - 7.times do |i|
-      - date = calendar_start_date + i
+      - date = calendar_start_date + i.day
       th= "#{date.strftime('%a')} #{date.day}"
   tbody
     - 24.times do |i|
