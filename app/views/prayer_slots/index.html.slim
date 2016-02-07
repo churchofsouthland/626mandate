@@ -5,6 +5,7 @@ ruby:
 .row
   .large-12.columns
     h2 My Prayer Slots - #{TimeZonePresenter.short_name(Time.zone.now)}
+    h4= current_user.email
 
     ul
       - @owned_prayer_slots.each do |slot|
