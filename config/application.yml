@@ -13,7 +13,7 @@ default_time_zone: 'Pacific Time (US & Canada)'
 
 # 626 mandate start date (PT)
 mandate_start_date: '2016/03/07'
-# 626 mandate end date (PT)
+# 626 mandate end date, inclusive (PT)
 mandate_finish_date: '2016/03/12'
 
 # date calendar starts on (user local time)
