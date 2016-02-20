@@ -18,6 +18,10 @@ class PagesController < ApplicationController
       @prev_link = false
     end
 
+    if TimeZonePresenter.short_name(Time.zone.now) == 'PST'
+      @next_link = false
+    end
+
     @prayer_slot_counts = PrayerSlot.group(:due)
                                     .count
                                     .inject({}) do |item, (k,v)|
