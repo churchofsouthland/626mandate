@@ -1,13 +1,11 @@
 class DateUtils
   # mandate start/end dates are in PT
   def self.mandate_start_date
-    #Time.parse(Figaro.env.mandate_start_date).in_time_zone("Pacific Time (US & Canada)").beginning_of_day.utc
     ActiveSupport::TimeZone["Pacific Time (US & Canada)"].parse(Figaro.env.mandate_start_date).beginning_of_day
   end
 
   # mandate start/end dates are in PT
   def self.mandate_finish_date
-    #Time.parse(Figaro.env.mandate_finish_date).in_time_zone("Pacific Time (US & Canada)").end_of_day.utc
     ActiveSupport::TimeZone["Pacific Time (US & Canada)"].parse(Figaro.env.mandate_finish_date).end_of_day
   end
 
