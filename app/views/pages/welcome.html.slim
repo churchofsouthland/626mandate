@@ -5,6 +5,28 @@ ruby:
   # some constants...move these somewhere more appropriate
   time_format = '%l:%M'
 
+- if params[:debug] == '1'
+  'DUBUG DUBUG DUBUG
+  p
+  'Time.parse(Figaro.env.mandate_start_date) = #{Time.parse(Figaro.env.mandate_start_date)}
+  br
+  'DateUtils.mandate_start_date = #{DateUtils.mandate_start_date}
+  br
+  'Time.parse(Figaro.env.mandate_start_date).utc = #{Time.parse(Figaro.env.mandate_start_date).utc}
+  br
+  'Time.now = #{Time.now}
+  br
+  'Time.zone = #{Time.zone}
+  br
+  'Time.zone.now = #{Time.zone.now}
+  br
+  '@calendar_start_date = #{@calendar_start_date}
+  p
+  'DUBUG DUBUG DUBUG
+  br
+  br
+  br
+
 p
 .alert-box.secondary(data-alert)
   h3 Instructions
