@@ -67,6 +67,9 @@ class PagesController < ApplicationController
   end
 
   def time_zone
+    if !user_signed_in?
+      redirect_to root_path, flash: { warning: 'You must sign in to do that.' }
+    end
   end
 
   def change_time_zone
