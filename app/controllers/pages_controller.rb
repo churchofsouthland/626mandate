@@ -18,7 +18,7 @@ class PagesController < ApplicationController
       @prev_link = false
     end
 
-    if TimeZonePresenter.short_name(Time.zone.now) == 'PST'
+    if true #TimeZonePresenter.short_name(Time.zone.now) == 'PST'
       @next_link = false
     end
 
