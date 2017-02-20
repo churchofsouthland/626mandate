@@ -75,4 +75,4 @@ group :production, :staging do
   gem 'rack-timeout' # abort slow rack requests
 end
 
-ruby "2.2.2"
+ruby "2.3.3"
