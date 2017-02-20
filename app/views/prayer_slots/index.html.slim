@@ -1,10 +1,10 @@
 ruby:
   # some constants...move these somewhere more appropriate
-  time_format = '%l:%M'
+  time_format = '%l:%M %P'
 
 .row
   .large-12.columns
-    h2 My Prayer Slots - #{TimeZonePresenter.short_name(Time.zone.now)}
+    h2 My Prayer Times - #{TimeZonePresenter.short_name(Time.zone.now)}
     h4= current_user.email
 
     ul

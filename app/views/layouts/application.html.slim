@@ -36,7 +36,7 @@ html lang="en"
               ul.right
                 - if user_signed_in?
                   li= link_to 'Calendar', '/'
-                  li= link_to 'My Prayer Slots', prayer_slots_path
+                  li= link_to 'My Prayer Times', prayer_slots_path
                   li= link_to 'Time Zone', time_zone_path
 
                   li.has-form(style="padding-right: 0")
