@@ -5,6 +5,7 @@
 * vietnam timezone
 * add link to COS in instructions
 * legend for colors/meaning. red, blue, white, grey
+* who is currently praying
 
 * css finger cursor for clickable boxes
 
