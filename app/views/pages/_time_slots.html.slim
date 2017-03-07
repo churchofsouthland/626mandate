@@ -1,6 +1,6 @@
 ruby:
   # some constants...move these somewhere more appropriate
-  time_format = '%l:%M'
+  time_format = '%l:%M%P'
   calendar_start_date = calendar_start_date + 12.hours if am_pm == 'PM'
 
 table.time-slots
@@ -13,7 +13,7 @@ table.time-slots
     - 24.times do |i|
       - time = calendar_start_date + (i * 30).minutes
       tr
-        td= time.strftime(time_format)
+        td= time.strftime(time_format)[0..-2]
         - 7.times do |i|
           ruby:
             adjusted_time_i = (time + i.day).to_i
