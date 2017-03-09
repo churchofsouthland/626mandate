@@ -12,18 +12,14 @@ autogen_password_length: "12"
 default_time_zone: 'Pacific Time (US & Canada)'
 
 # 626 mandate start date (PT)
-#mandate_start_date: '2017/03/20'
-mandate_start_date: '2017/03/6'
+mandate_start_date: '2017/03/20'
 # 626 mandate end date, inclusive (PT)
-#mandate_finish_date: '2017/03/24'
-mandate_finish_date: '2017/03/10'
+mandate_finish_date: '2017/03/24'
 
 # date calendar starts on (user local time)
-#calendar_start_date: '2017/03/19'
-calendar_start_date: '2017/03/5'
+calendar_start_date: '2017/03/19'
 # last starting day to show on calendar
-#calendar_last_date: '2017/03/25'
-calendar_last_date: '2017/03/11'
+calendar_last_date: '2017/03/25'
 
 # set default here but we don't want to be using rollbar in anything other than prod/stage
 rollbar_access_token: 'foo'
