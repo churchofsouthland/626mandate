@@ -9,4 +9,4 @@ ruby:
 
     ul
       - @owned_prayer_slots.each do |slot|
-        li= slot.due.strftime("%B %e, #{time_format}")
+        li= slot.due.strftime("%A, %B %e, #{time_format}")
