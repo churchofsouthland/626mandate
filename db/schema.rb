@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207060053) do
+ActiveRecord::Schema.define(version: 20170320034423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "daily_notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "prayer_slot_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "daily_notifications", ["prayer_slot_id"], name: "index_daily_notifications_on_prayer_slot_id", using: :btree
 
   create_table "prayer_slots", force: :cascade do |t|
     t.integer  "user_id"
