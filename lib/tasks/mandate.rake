@@ -2,7 +2,7 @@ namespace :mandate do
   desc "send notifications"
   task send_notifications: :environment do
     puts 'start send notifications'
-    UserNotifier.send_daily_notification(User.find_by(email: 'daniel.kiros@gmail.com', 'due soon').deliver
+    UserNotifier.send_daily_notification(User.find_by(email: 'daniel.kiros@gmail.com'), 'due soon').deliver
 
     #all_slots = PrayerSlot.where(due: (DateTime.now)..(DateTime.now + 24.hours)).map(&:id)
     #sent_slots = DailyNotification.all.map(&:prayer_slot_id)
