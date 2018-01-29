@@ -3,7 +3,7 @@ class TimeZonePresenter
     short_name = time.strftime('%Z')
 
     if short_name == 'CST'
-      'Beijing'
+      'China'
     else
       short_name
     end
